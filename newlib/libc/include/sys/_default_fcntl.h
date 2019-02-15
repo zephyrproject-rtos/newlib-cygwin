@@ -210,7 +210,9 @@ struct eflock {
 #include <sys/types.h>
 #include <sys/stat.h>		/* sigh. for the mode bits for open/creat */
 
+#if !defined(MISSING_SYSCALL_NAMES)
 extern int open (const char *, int, ...);
+#endif
 #if __ATFILE_VISIBLE
 extern int openat (int, const char *, int, ...);
 #endif
