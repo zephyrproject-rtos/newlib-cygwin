@@ -7510,7 +7510,7 @@ fi
 # Special user-friendly check for native x86_64-linux build, if
 # multilib is not explicitly enabled.
 case "$target:$have_compiler:$host:$target:$enable_multilib" in
-  x86_64-*linux*:yes:$build:$build:)
+  x86_64-*linux*:yes:$build:$build: | x86_64-zephyr-elf:yes:$build:$build:)
     # Make sure we have a development environment that handles 32-bit
     dev64=no
     echo "int main () { return 0; }" > conftest.c
