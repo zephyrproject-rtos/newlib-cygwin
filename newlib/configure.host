@@ -349,8 +349,22 @@ case "${host_cpu}" in
 	machine_dir=w65
 	;;
   x86_64)
-	machine_dir=x86_64
-	libm_machine_dir=x86_64
+	case "${CC}" in
+	  *-m32*)
+	      libm_machine_dir=i386
+	      machine_dir=i386
+	      mach_add_setjmp=true
+	      newlib_cflags="${newlib_cflags} -march=pentium"
+	      ;;
+	  *-mx32)
+	      machine_dir=x86_64
+	      libm_machine_dir=x86_64
+	      ;;
+	  *)
+	      machine_dir=x86_64
+	      libm_machine_dir=x86_64
+	      ;;
+	esac
 	;;
   xc16x*)
         machine_dir=xc16x
