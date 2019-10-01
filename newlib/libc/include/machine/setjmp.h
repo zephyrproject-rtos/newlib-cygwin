@@ -272,6 +272,11 @@ _BEGIN_STD_C
 #define _JBLEN 25 /* r13-r30,blink,lp_count,lp_start,lp_end,mlo,mhi,status32 */
 #endif
 
+#ifdef __ARC64__
+/* r14-r27,sp,ilink,r30,blink,r58,status32.  */
+#define _JBLEN 20
+#endif
+
 #ifdef __MMIX__
 /* Using a layout compatible with GCC's built-in.  */
 #define _JBLEN 5
