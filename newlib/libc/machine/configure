@@ -789,6 +789,7 @@ ac_subdirs_all='a29k
 aarch64
 amdgcn
 arc
+arc64
 arm
 bfin
 cr16
@@ -11860,6 +11861,8 @@ subdirs="$subdirs a29k"
 	amdgcn) subdirs="$subdirs amdgcn"
  ;;
 	arc) subdirs="$subdirs arc"
+ ;;
+	arc64) subdirs="$subdirs arc64"
  ;;
 	arm) subdirs="$subdirs arm"
  ;;
