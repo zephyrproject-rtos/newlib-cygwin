@@ -688,6 +688,17 @@ newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVID
   *-*-tirtos*)
 	newlib_cflags="${newlib_cflags} -D__DYNAMIC_REENT__ -DMALLOC_PROVIDED"
 	;;
+  *-zephyr-*)
+	syscall_dir=syscalls
+	case "${host}" in
+	  arm*-*-*)
+		if [ "x${newlib_may_supply_syscalls}" = "xyes" ] ; then
+		  newlib_cflags="${newlib_cflags} -DARM_RDI_MONITOR"
+		fi
+		;;
+	  *)
+	esac
+	;;
 # UDI doesn't have exec, so system() should fail the right way
   a29k-amd-udi)
 	newlib_cflags="${newlib_cflags} -DNO_EXEC"
