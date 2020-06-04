@@ -33,11 +33,9 @@
 #include <reent.h>
 
 /* Register a function to be performed at exit.  */
+#ifndef _REENT_GLOBAL_ATEXIT
 
-int
-_DEFUN (_atexit,
-	(fn),
-	_VOID _EXFUN ((*fn), (_VOID)))
+int _atexit(void (*fn)(void))
 {
   register struct _atexit *p;
 
@@ -53,3 +51,4 @@ _DEFUN (_atexit,
   return 0;
 }
 
+#endif
