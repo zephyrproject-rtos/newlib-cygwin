@@ -114,6 +114,21 @@
 
 ENTRY(setjmp)
 ENTRY(_setjmp)
+#ifdef _FLAT
+        /*
+         * Single register window model (GCC -mflat): store call-saved
+         * registers at their reserved stack locations.
+         */
+        std     %l0, [%sp]
+        std     %l2, [%sp+8]
+        std     %l4, [%sp+16]
+        std     %l6, [%sp+24]
+
+        std     %i0, [%sp+32]
+        std     %i2, [%sp+40]
+        std     %i4, [%sp+48]
+#endif
+
         st      %sp, [%o0]      /* caller's stack pointer */
         st      %i7, [%o0+4]    /* caller's return pc */
         st      %fp, [%o0+8]    /* store caller's frame pointer */
@@ -123,7 +138,9 @@ ENTRY(_setjmp)
 
 ENTRY(longjmp)
 ENTRY(_longjmp)
+#ifndef _FLAT
         ta      0x03            /* flush registers */
+#endif
         addcc   %o1, %g0, %g1   ! compute v ? v : 1 in a global register
         be,a    0f
         mov     1, %g1
