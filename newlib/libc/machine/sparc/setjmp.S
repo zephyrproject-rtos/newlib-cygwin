@@ -81,12 +81,12 @@
 
 #ifdef PROF
 #define ENTRY(x) \
-        .align 4; .globl SYM(x); .proc 1; SYM(x):; .data; .align 4; 1: .long 0; \
+        .align 4; .globl SYM(x); SYM(x):; .data; .align 4; 1: .long 0; \
         .text; save %sp,-96,%sp; sethi %hi(1b),%o0; call mcount; \
         or %lo(1b),%o0,%o0; restore
 #else
 #define ENTRY(x) \
-        .align 4; .globl SYM(x); .proc 1; SYM(x):
+        .align 4; .globl SYM(x);  SYM(x):
 #endif
 
 
