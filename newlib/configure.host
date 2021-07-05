@@ -381,7 +381,6 @@ case "${host_cpu}" in
 	libm_machine_dir=xtensa
 	machine_dir=xtensa
 	newlib_cflags="${newlib_cflags} -mlongcalls"
-	newlib_cflags="${newlib_cflags} -DREENTRANT_SYSCALLS_PROVIDED"
         ;;
   z8k)
 	machine_dir=z8k
