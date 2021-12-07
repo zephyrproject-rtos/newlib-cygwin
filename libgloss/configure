@@ -2412,7 +2412,7 @@ case "${target}" in
 	subdirs="$subdirs arc"
 
 	;;
-  arc64-*-*)
+  arc[6432]*-*-*)
 	subdirs="$subdirs arc64"
 
 	;;
