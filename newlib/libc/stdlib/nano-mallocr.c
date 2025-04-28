@@ -575,7 +575,7 @@ void * nano_memalign(RARG size_t align, size_t s)
 	RERRNO = ENOMEM;
 	return NULL;
     }
-    ma_size = ALIGN_SIZE(MAX(s, MALLOC_MINSIZE), CHUNK_ALIGN);
+    ma_size = ALIGN_TO(MAX(s, MALLOC_MINSIZE), CHUNK_ALIGN);
 
     /* Make sure size_with_padding does not overflow */
     if (ma_size > __SIZE_MAX__ - (align - MALLOC_ALIGN))
@@ -652,6 +652,6 @@ void * nano_pvalloc(RARG size_t s)
 	RERRNO = ENOMEM;
 	return NULL;
     }
-    return nano_valloc(RCALL ALIGN_SIZE(s, MALLOC_PAGE_ALIGN));
+    return nano_valloc(RCALL ALIGN_TO(s, MALLOC_PAGE_ALIGN));
 }
 #endif /* DEFINE_PVALLOC */
